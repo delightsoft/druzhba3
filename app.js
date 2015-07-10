@@ -28,13 +28,13 @@ ngModule.controller('sidebarCtrl', [
   '$rootScope', '$http', '$scope', (function($rootScope, $http, $scope) {
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/get/TszhContact@1'
+      url: 'http://localhost:9000/public/api/get/TszhContact@1'
     }).success((function(data) {
       $rootScope.tszhContact = data;
     }));
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/list/ServiceCompany?t=list'
+      url: 'http://localhost:9000/public/api/list/ServiceCompany?t=list'
     }).success((function(data) {
       $rootScope.serviceCompanyList = data.list;
     }));
@@ -45,7 +45,7 @@ ngModule.controller('noteCtrl', [
   '$rootScope', '$http', '$scope', (function($rootScope, $http, $scope) {
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/list/ItemA?t=list'
+      url: 'http://localhost:9000/public/api/list/ItemA?t=list'
     }).success((function(data) {
       $rootScope.noteList = data.list;
     }));
@@ -56,7 +56,7 @@ ngModule.controller('documentListCtrl', [
   '$rootScope', '$http', '$scope', (function($rootScope, $http, $scope) {
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/list/ItemB?t=list'
+      url: 'http://localhost:9000/public/api/list/ItemB?t=list'
     }).success((function(data) {
       $rootScope.documentList = data.list;
       console.log(data);
@@ -92,15 +92,15 @@ ngModule.directive('yandexMap', [
   })
 ]);
 
-ngModule.filter('phone', (function() {
-  (function(input) {
-    var editPhone, number, numberEdited;
+ngModule.filter('phone', function() {
+  return function(input) {
+    var EditPhone, number, numberEdited;
     number = input || '';
     if (angular.isArray(number)) {
       return;
     }
     numberEdited = number.trim().replace(/[-\s\(\)]/g, '');
-    editPhone = function(num) {
+    EditPhone = function(num) {
       var area, cod, local;
       cod = "" + num.slice(0, 2);
       area = "(" + num.slice(2, 5) + ")";
@@ -109,12 +109,12 @@ ngModule.filter('phone', (function() {
       return num;
     };
     if (numberEdited.length === 12 && ("" + numberEdited.slice(0, 2)) === '+7') {
-      return editPhone(numberEdited);
+      return EditPhone(numberEdited);
     } else {
       return number;
     }
-  });
-}));
+  };
+});
 
 
 
