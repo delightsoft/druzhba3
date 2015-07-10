@@ -28,13 +28,13 @@ ngModule.controller('sidebarCtrl', [
   '$rootScope', '$http', '$scope', (function($rootScope, $http, $scope) {
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/get/TszhContact@1'
+      url: config.server.base + "/public/api/get/TszhContact@1"
     }).success((function(data) {
       $rootScope.tszhContact = data;
     }));
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/list/ServiceCompany?t=list'
+      url: config.server.base + "/public/api/list/ServiceCompany?t=list"
     }).success((function(data) {
       $rootScope.serviceCompanyList = data.list;
     }));
@@ -45,7 +45,7 @@ ngModule.controller('noteCtrl', [
   '$rootScope', '$http', '$scope', (function($rootScope, $http, $scope) {
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/list/ItemA?t=list'
+      url: config.server.base + "/public/api/list/ItemA?t=list"
     }).success((function(data) {
       $rootScope.noteList = data.list;
     }));
@@ -56,7 +56,7 @@ ngModule.controller('documentListCtrl', [
   '$rootScope', '$http', '$scope', (function($rootScope, $http, $scope) {
     $http({
       method: 'GET',
-      url: '#{config.server.base}/public/api/list/ItemB?t=list'
+      url: config.server.base + "/public/api/list/ItemB?t=list"
     }).success((function(data) {
       $rootScope.documentList = data.list;
       console.log(data);
